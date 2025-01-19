@@ -1,0 +1,43 @@
+.arrow {
+    animation: bounce 5s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+.editor {
+    background-color: #1e1e1e;
+    color: #dcdcdc;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.editor .line-number {
+    display: inline-block;
+    width: 1rem;
+    color: #6a9955;
+    text-align: right;
+    margin-right: 1rem;
+}
+
+.editor .code {
+    display: inline;
+}
+
+.editor .cursor {
+    animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
