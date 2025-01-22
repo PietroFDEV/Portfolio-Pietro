@@ -50,9 +50,12 @@
         </section>
 
          <!-- Embedded Websites Section -->
-        <section class="mt-12">
-            <h2 class="text-3xl font-bold text-center mb-6">Projects</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+         <section class="mt-12">
+            <h2 class="text-3xl font-bold text-center">Projects</h2>
+            <p class="text-center mt-4 text-gray-600 mb-6">
+                Explore some of the websites I developed and contributed to.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="projects-grid">
                 <!-- Project 1 -->
                 <div class="bg-white rounded-lg shadow-lg p-3">
                     <h3 class="text-xl font-bold mb-2">Colégio Saber Website</h3>
@@ -104,9 +107,12 @@
                     </div>
                 </div>
             </div>
-            <p class="text-center mt-4 text-gray-600">
-                Explore some of the websites I developed and contributed to.
-            </p>
+            <!-- See More Button -->
+            <div id="see-more-div" class="flex justify-center mt-6">
+                <button id="see-more-btn" class="bg-teal-600 text-white px-8 py-4 rounded hover:bg-teal-600 focus:outline-none text-lg mg-auto">
+                    See More
+                </button>
+            </div>
         </section>
 
 
@@ -197,6 +203,70 @@
         }
 
         typeEffect();
+
+        const moreProjects = [
+        {
+            title: "Cassino Template",
+            type: "iframe",
+            projectLink: "https://pietrofdev.github.io/VintePila_Cassino/",
+            githubLink: "https://github.com/PietroFDEV/VintePila_Cassino",
+            iframeSrc: "https://pietrofdev.github.io/VintePila_Cassino/"
+        },
+        {
+            title: "Events Managment",
+            type: "iframe",
+            projectLink: null,
+            githubLink: "https://github.com/PietroFDEV/GestaoDeEventos",
+            iframeSrc: "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7276989020671258624"
+        },
+        {
+            title: "Project Managment",
+            type: "iframe",
+            projectLink: null,
+            githubLink: "https://github.com/PietroFDEV/GerenciadorDeProjetos",
+            iframeSrc: "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7163231483409768448"
+        },
+    ];
+
+    const projectsGrid = document.getElementById("projects-grid");
+    const seeMoreBtn = document.getElementById("see-more-btn");
+    const seeMoreDiv = document.getElementById("see-more-div");
+
+    seeMoreBtn.addEventListener("click", () => {
+        moreProjects.forEach((project) => {
+            const projectDiv = document.createElement("div");
+            projectDiv.className = "bg-white rounded-lg shadow-lg p-3";
+
+            // Set up content based on type
+            let content;
+            content = `
+                <div class="w-full aspect-video bg-gray-200 rounded-lg overflow-hidden shadow">
+                    <iframe 
+                        src="${project.iframeSrc}" 
+                        class="w-full h-full border-none" 
+                        allowfullscreen
+                    ></iframe>
+                </div>`;
+            
+            // Add project card
+            projectDiv.innerHTML = `
+                <h3 class="text-xl font-bold mb-2">${project.title}</h3>
+                <div class="mt-4 flex justify-between items-center mb-4">
+                    ${
+                        project.projectLink
+                            ? `<a href="${project.projectLink}" target="_blank" class="text-sm text-teal-600 hover:underline">View Project</a>`
+                            : ""
+                    }
+                    <a href="${project.githubLink}" target="_blank">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/1200px-Octicons-mark-github.svg.png" alt="GitHub Repository" class="w-8 h-8">
+                    </a>
+                </div>
+                ${content}
+            `;
+            projectsGrid.appendChild(projectDiv);
+        });
+        seeMoreDiv.style.display = "none"; // Hide the button after loading
+    });
     </script>
 </body>
 </html>
