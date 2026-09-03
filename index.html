@@ -1,272 +1,1079 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" type="text/css" href="https://pietrofdev.github.io/Portfolio-Pietro/src/styles/style.css"/>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pietro Favoreto — Desenvolvedor & Sistemas sob medida</title>
+<meta name="description" content="Portfólio de Pietro Favoreto. Sites e sistemas de gestão sob medida para clientes reais: Colégio Saber, Karaoke Fila, CIA DF. Back-end, integrações e APIs em C#, PHP, Python e MySQL.">
+<meta name="author" content="Pietro Favoreto">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Pietro Favoreto — Desenvolvedor & Sistemas sob medida">
+<meta property="og:description" content="Sites e sistemas de gestão sob medida para clientes reais. Back-end, integrações e APIs.">
+<meta property="og:image" content="src/images/work/ciadf.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --bg:#FBFAF7;
+  --bg-tint:#F3F0EA;
+  --surface:#FFFFFF;
+  --ink:#161311;
+  --ink-soft:#4A443E;
+  --muted:#847C72;
+  --line:#E6E0D6;
+  --line-strong:#D6CFC2;
+  --accent:#3552F0;
+  --accent-ink:#1B2BAA;
+  --accent-wash:#EAEDFE;
+  --ok:#1F9E7A;
+  --serif:'Fraunces', Georgia, 'Times New Roman', serif;
+  --sans:'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono:'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --shadow-sm:0 1px 2px rgba(20,17,14,.05), 0 8px 24px -12px rgba(20,17,14,.12);
+  --shadow-lg:0 40px 80px -40px rgba(20,17,14,.35), 0 12px 32px -16px rgba(20,17,14,.18);
+  --radius:14px;
+  --maxw:1200px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+:root[data-theme="dark"]{
+  --bg:#100E0C;
+  --bg-tint:#17140F;
+  --surface:#1A1713;
+  --ink:#F4F0E9;
+  --ink-soft:#C6BFB4;
+  --muted:#948C7F;
+  --line:#2C2721;
+  --line-strong:#3A342C;
+  --accent:#7E97FF;
+  --accent-ink:#A9BAFF;
+  --accent-wash:#1C1F33;
+  --ok:#4FD0A8;
+  --shadow-sm:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  --shadow-lg:0 40px 90px -40px rgba(0,0,0,.8), 0 12px 32px -16px rgba(0,0,0,.6);
+}
+
+/* ============ RESET ============ */
+*,*::before,*::after{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth; -webkit-text-size-adjust:100%;}
+@media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto;} }
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%; display:block;}
+a{color:inherit; text-decoration:none;}
+button{font:inherit; color:inherit; background:none; border:none; cursor:pointer;}
+::selection{background:var(--accent); color:#fff;}
+:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px;}
+
+/* ============ LAYOUT ============ */
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
+@media (max-width:640px){ .wrap{padding:0 20px;} }
+section{padding:120px 0; position:relative;}
+@media (max-width:820px){ section{padding:84px 0;} }
+
+.eyebrow{
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--accent-ink);
+  display:inline-flex; align-items:center; gap:10px;
+}
+.eyebrow::before{content:""; width:24px; height:1px; background:currentColor; opacity:.6;}
+
+h1,h2,h3{font-family:var(--serif); font-weight:500; line-height:1.05; letter-spacing:-.015em;}
+h1 em, h2 em{font-style:italic; font-weight:400;}
+.section-head{max-width:none; margin-bottom:60px; display:grid; grid-template-columns:1fr; gap:20px;}
+@media (min-width:900px){
+  .section-head{grid-template-columns:auto 1fr; align-items:end; gap:48px;}
+  .section-head .sh-note{max-width:38ch; justify-self:end; text-align:right;}
+}
+.section-head h2{font-size:clamp(34px,5.2vw,58px);}
+.section-head .sh-note{color:var(--muted); font-size:15px; line-height:1.6;}
+
+/* ============ BUTTONS ============ */
+.btn{
+  --pad:14px 24px;
+  display:inline-flex; align-items:center; gap:10px;
+  font-family:var(--mono); font-size:13.5px; letter-spacing:.02em;
+  padding:var(--pad); border-radius:100px;
+  border:1px solid transparent;
+  transition:transform .35s var(--ease), background .25s, border-color .25s, color .25s;
+  will-change:transform;
+}
+.btn i{font-size:12px;}
+.btn-primary{background:var(--ink); color:var(--bg);}
+.btn-primary:hover{background:var(--accent); color:#fff;}
+.btn-ghost{border-color:var(--line-strong); color:var(--ink);}
+.btn-ghost:hover{border-color:var(--ink); background:var(--ink); color:var(--bg);}
+.btn-sm{padding:10px 16px; font-size:12.5px;}
+
+/* ============ INTRO LOADER ============ */
+#intro{
+  position:fixed; inset:0; z-index:1000;
+  background:var(--bg);
+  display:grid; place-items:center;
+  transition:transform 1s var(--ease);
+}
+#intro.done{transform:translateY(-101%);}
+#intro .intro-inner{overflow:hidden; padding:0 24px; text-align:center;}
+#intro .intro-name{
+  font-family:var(--serif); font-size:clamp(30px,7vw,68px); font-weight:500;
+  letter-spacing:-.02em; color:var(--ink);
+  transform:translateY(110%);
+  animation:introUp .9s var(--ease) .15s forwards;
+}
+#intro .intro-role{
+  font-family:var(--mono); font-size:12px; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--muted); margin-top:16px; opacity:0;
+  animation:introFade .8s ease .7s forwards;
+}
+#intro .intro-bar{
+  margin:26px auto 0; width:0; height:2px; background:var(--accent);
+  animation:introBar 1s var(--ease) .5s forwards;
+}
+@keyframes introUp{to{transform:translateY(0);}}
+@keyframes introFade{to{opacity:1;}}
+@keyframes introBar{to{width:180px;}}
+
+/* ============ CUSTOM CURSOR ============ */
+.cursor-dot,.cursor-ring{
+  position:fixed; top:0; left:0; z-index:999;
+  pointer-events:none; border-radius:50%;
+  mix-blend-mode:difference;
+  opacity:0; transition:opacity .3s;
+}
+.cursor-dot{width:6px; height:6px; margin:-3px 0 0 -3px; background:#fff;}
+.cursor-ring{
+  width:38px; height:38px; margin:-19px 0 0 -19px;
+  border:1px solid #fff;
+  transition:opacity .3s, transform .2s var(--ease), width .2s var(--ease), height .2s var(--ease), margin .2s var(--ease);
+}
+body.cursor-on.pointer-fine .cursor-dot,
+body.cursor-on.pointer-fine .cursor-ring{opacity:1;}
+body.cursor-on.pointer-fine *{cursor:none !important;}
+.cursor-ring.hover{width:64px; height:64px; margin:-32px 0 0 -32px; background:rgba(255,255,255,.06);}
+
+/* ============ SCROLL PROGRESS ============ */
+#progress{
+  position:fixed; top:0; left:0; height:2px; width:100%;
+  background:var(--accent); transform:scaleX(0); transform-origin:0 50%;
+  z-index:120;
+}
+
+/* ============ NAV ============ */
+header.nav{
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  transition:background .3s, border-color .3s, backdrop-filter .3s;
+  border-bottom:1px solid transparent;
+}
+header.nav.scrolled{
+  background:color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter:blur(14px) saturate(1.4);
+  -webkit-backdrop-filter:blur(14px) saturate(1.4);
+  border-bottom-color:var(--line);
+}
+header.nav .wrap{display:flex; align-items:center; justify-content:space-between; height:72px;}
+.brand{font-family:var(--serif); font-size:20px; font-weight:500; letter-spacing:-.01em; display:flex; align-items:center; gap:9px;}
+.brand .dotmark{width:9px; height:9px; border-radius:50%; background:var(--accent); display:inline-block; margin-bottom:2px;}
+.nav-links{display:none; gap:34px; font-family:var(--mono); font-size:13px; color:var(--muted);}
+.nav-links a{position:relative; padding:4px 0; transition:color .2s;}
+.nav-links a::after{content:""; position:absolute; left:0; bottom:0; height:1px; width:100%; background:var(--ink); transform:scaleX(0); transform-origin:0 50%; transition:transform .3s var(--ease);}
+.nav-links a:hover, .nav-links a.active{color:var(--ink);}
+.nav-links a.active::after{transform:scaleX(1);}
+.nav-right{display:flex; align-items:center; gap:14px;}
+.theme-toggle{width:38px; height:38px; border-radius:50%; border:1px solid var(--line-strong); display:grid; place-items:center; font-size:13px; color:var(--ink-soft); transition:border-color .2s, color .2s, transform .4s var(--ease);}
+.theme-toggle:hover{border-color:var(--ink); color:var(--ink); transform:rotate(-25deg);}
+.nav-cta{display:none;}
+.menu-btn{display:grid; gap:5px; width:40px; height:40px; place-content:center;}
+.menu-btn span{display:block; width:20px; height:1.5px; background:var(--ink); transition:transform .3s var(--ease), opacity .2s;}
+@media (min-width:960px){
+  .nav-links{display:flex;}
+  .nav-cta{display:inline-flex;}
+  .menu-btn{display:none;}
+}
+
+/* MOBILE MENU */
+#mobile-menu{
+  position:fixed; inset:0; z-index:99;
+  background:var(--bg);
+  display:flex; flex-direction:column; justify-content:center; gap:8px;
+  padding:0 32px;
+  transform:translateY(-100%);
+  transition:transform .6s var(--ease);
+}
+#mobile-menu.open{transform:translateY(0);}
+#mobile-menu a{
+  font-family:var(--serif); font-size:clamp(30px,9vw,52px); color:var(--ink);
+  padding:10px 0; border-bottom:1px solid var(--line);
+}
+#mobile-menu .mm-meta{margin-top:32px; font-family:var(--mono); font-size:12px; color:var(--muted); border:none; letter-spacing:.08em;}
+body.menu-open{overflow:hidden;}
+body.menu-open .menu-btn span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+body.menu-open .menu-btn span:nth-child(2){opacity:0;}
+body.menu-open .menu-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+
+/* ============ HERO ============ */
+.hero{padding:150px 0 90px; position:relative; overflow:hidden;}
+.hero-bg{position:absolute; inset:0; z-index:-1; overflow:hidden;}
+.hero-bg .blob{position:absolute; border-radius:50%; filter:blur(70px); opacity:.5;}
+.hero-bg .b1{width:520px; height:520px; background:var(--accent-wash); top:-160px; right:-120px;}
+.hero-bg .b2{width:420px; height:420px; background:#F7E9D8; bottom:-160px; left:-100px;}
+:root[data-theme="dark"] .hero-bg .b2{background:#241a12;}
+.hero-bg .grain{position:absolute; inset:-50%; opacity:.5; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.45'/%3E%3C/svg%3E");}
+
+.hero .status-badge{
+  display:inline-flex; align-items:center; gap:10px;
+  font-family:var(--mono); font-size:12px; letter-spacing:.06em;
+  padding:8px 16px; border:1px solid var(--line-strong); border-radius:100px;
+  color:var(--ink-soft); background:var(--surface);
+  margin-bottom:34px;
+}
+.hero .status-badge .live{width:7px; height:7px; border-radius:50%; background:var(--ok); position:relative;}
+.hero .status-badge .live::after{content:""; position:absolute; inset:-4px; border-radius:50%; border:1px solid var(--ok); animation:ping 2s var(--ease) infinite;}
+@keyframes ping{0%{transform:scale(.6); opacity:1;} 100%{transform:scale(1.8); opacity:0;}}
+
+.hero h1{font-size:clamp(40px,7.5vw,88px); max-width:16ch;}
+.hero .lead{
+  margin-top:30px; max-width:52ch;
+  font-size:clamp(16px,2vw,19px); color:var(--ink-soft);
+}
+.hero-actions{margin-top:40px; display:flex; flex-wrap:wrap; gap:14px;}
+
+.line-mask{overflow:hidden;}
+.line-mask > span{display:block; transform:translateY(110%);}
+.reveal-in .line-mask > span{transform:translateY(0); transition:transform 1s var(--ease);}
+.reveal-in .line-mask:nth-child(2) > span{transition-delay:.08s;}
+.reveal-in .line-mask:nth-child(3) > span{transition-delay:.16s;}
+.reveal-in .line-mask:nth-child(4) > span{transition-delay:.24s;}
+
+/* MARQUEE */
+.marquee{margin-top:70px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:20px 0; overflow:hidden; -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent); mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);}
+.marquee-track{display:flex; align-items:center; gap:44px; width:max-content; animation:scroll 34s linear infinite;}
+.marquee:hover .marquee-track{animation-play-state:paused;}
+.marquee-track span{font-family:var(--mono); font-size:13px; color:var(--muted); letter-spacing:.05em; white-space:nowrap; display:inline-flex; align-items:center; gap:44px;}
+.marquee-track span::after{content:"✦"; color:var(--accent); font-size:9px;}
+@keyframes scroll{to{transform:translateX(-50%);}}
+
+/* ============ STATS ============ */
+.stats{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
+@media (min-width:760px){ .stats{grid-template-columns:repeat(4,1fr);} }
+.stat{background:var(--bg); padding:34px 26px;}
+.stat .num{font-family:var(--serif); font-size:clamp(38px,5vw,54px); font-weight:500; letter-spacing:-.02em; display:flex; align-items:baseline; gap:4px;}
+.stat .num small{font-size:.45em; color:var(--accent-ink);}
+.stat .lbl{margin-top:8px; font-family:var(--mono); font-size:12px; color:var(--muted); letter-spacing:.04em;}
+
+/* ============ WORK ============ */
+.work-item{
+  display:grid; grid-template-columns:1fr; gap:32px;
+  padding:56px 0;
+  border-top:1px solid var(--line);
+}
+.work-item:last-child{border-bottom:1px solid var(--line);}
+@media (min-width:940px){
+  .work-item{grid-template-columns:1fr 1.15fr; gap:64px; align-items:center;}
+  .work-item.flip .work-media{order:2;}
+}
+.work-meta .idx{font-family:var(--mono); font-size:13px; color:var(--accent-ink); letter-spacing:.1em;}
+.work-meta h3{font-size:clamp(28px,4vw,42px); margin:16px 0 4px;}
+.work-meta .cat{font-family:var(--mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted);}
+.work-meta p{margin-top:18px; color:var(--ink-soft); font-size:15.5px; max-width:46ch;}
+.work-meta .kv{margin-top:22px; display:flex; flex-wrap:wrap; gap:8px;}
+.work-meta .kv span{font-family:var(--mono); font-size:11.5px; color:var(--ink-soft); border:1px solid var(--line-strong); border-radius:100px; padding:5px 12px;}
+.work-meta .links{margin-top:26px; display:flex; gap:22px; font-family:var(--mono); font-size:13px;}
+.work-meta .links a{display:inline-flex; align-items:center; gap:8px; color:var(--accent-ink); transition:gap .25s var(--ease);}
+.work-meta .links a:hover{gap:12px;}
+
+/* browser mockup */
+.browser{
+  border:1px solid var(--line-strong); border-radius:12px; overflow:hidden;
+  background:var(--surface); box-shadow:var(--shadow-lg);
+  transform:translateY(0);
+  transition:transform .6s var(--ease), box-shadow .6s var(--ease);
+}
+.work-media:hover .browser{transform:translateY(-6px);}
+.browser-bar{display:flex; align-items:center; gap:7px; padding:11px 14px; background:var(--bg-tint); border-bottom:1px solid var(--line);}
+.browser-bar i{width:9px; height:9px; border-radius:50%; background:var(--line-strong);}
+.browser-bar .url{margin-left:12px; flex:1; font-family:var(--mono); font-size:11px; color:var(--muted); background:var(--bg); border:1px solid var(--line); border-radius:100px; padding:5px 12px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+.browser-bar .live-tag{font-family:var(--mono); font-size:9.5px; letter-spacing:.1em; color:var(--ok); opacity:0; transition:opacity .3s;}
+.work-media:hover .browser-bar .live-tag{opacity:1;}
+.viewport{position:relative; aspect-ratio:16/10; overflow:hidden; background:var(--bg-tint);}
+.viewport img{width:100%; height:100%; object-fit:cover; object-position:top center; transition:transform 1.1s var(--ease), opacity .4s;}
+.work-media:hover .viewport img{transform:scale(1.03);}
+.viewport iframe{position:absolute; inset:0; width:100%; height:100%; border:0; opacity:0; pointer-events:none; transition:opacity .5s; background:#fff;}
+.viewport.playing iframe{opacity:1;}
+.viewport .hint{
+  position:absolute; left:50%; bottom:16px; transform:translateX(-50%) translateY(8px);
+  font-family:var(--mono); font-size:11px; letter-spacing:.08em;
+  background:var(--ink); color:var(--bg); padding:7px 14px; border-radius:100px;
+  opacity:0; transition:opacity .3s, transform .3s var(--ease); pointer-events:none; z-index:2;
+}
+.work-media:hover .viewport .hint{opacity:1; transform:translateX(-50%) translateY(0);}
+.viewport.playing .hint{opacity:0;}
+
+/* placeholder viewport (no screenshot) */
+.viewport.dash{display:flex; flex-direction:column; justify-content:center; gap:2px; padding:26px 30px; aspect-ratio:16/10;}
+.viewport.dash .row{display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px dashed var(--line-strong); font-family:var(--mono); font-size:12.5px; color:var(--muted);}
+.viewport.dash .row:last-child{border-bottom:none;}
+.viewport.dash .row b{color:var(--accent-ink); font-weight:500;}
+
+/* ============ MORE PROJECTS GRID ============ */
+.grid-projects{display:grid; grid-template-columns:1fr; gap:20px;}
+@media (min-width:640px){ .grid-projects{grid-template-columns:repeat(2,1fr);} }
+@media (min-width:980px){ .grid-projects{grid-template-columns:repeat(3,1fr);} }
+.mini{
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+  padding:26px; display:flex; flex-direction:column; gap:14px;
+  transition:transform .5s var(--ease), border-color .3s, box-shadow .5s var(--ease);
+}
+.mini:hover{transform:translateY(-5px); border-color:var(--line-strong); box-shadow:var(--shadow-sm);}
+.mini .mini-top{display:flex; align-items:center; justify-content:space-between;}
+.mini .mini-cat{font-family:var(--mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted);}
+.mini .mini-icn{width:34px; height:34px; border-radius:9px; background:var(--accent-wash); color:var(--accent-ink); display:grid; place-items:center; font-size:13px;}
+.mini h4{font-family:var(--serif); font-size:21px; font-weight:500;}
+.mini p{font-size:13.5px; color:var(--muted); line-height:1.55; flex:1;}
+.mini .mini-tags{display:flex; flex-wrap:wrap; gap:6px;}
+.mini .mini-tags span{font-family:var(--mono); font-size:10.5px; color:var(--ink-soft); border:1px solid var(--line); border-radius:100px; padding:3px 9px;}
+.mini .mini-links{display:flex; gap:16px; font-family:var(--mono); font-size:12px; padding-top:4px;}
+.mini .mini-links a{color:var(--accent-ink); display:inline-flex; align-items:center; gap:6px;}
+
+/* ============ PROCESS ============ */
+.process-grid{display:grid; grid-template-columns:1fr; gap:0;}
+@media (min-width:820px){ .process-grid{grid-template-columns:repeat(4,1fr);} }
+.step{padding:30px 26px 30px 0; border-top:2px solid var(--ink); position:relative;}
+@media (max-width:819px){ .step{border-top:1px solid var(--line);} .step:first-child{border-top:2px solid var(--ink);} }
+.step .n{font-family:var(--mono); font-size:12px; color:var(--muted); letter-spacing:.1em;}
+.step h4{font-family:var(--serif); font-size:22px; font-weight:500; margin:14px 0 10px;}
+.step p{font-size:13.5px; color:var(--muted); line-height:1.55;}
+
+/* ============ ABOUT ============ */
+.about-grid{display:grid; grid-template-columns:1fr; gap:44px;}
+@media (min-width:900px){ .about-grid{grid-template-columns:.85fr 1.15fr; gap:70px; align-items:start;} }
+.about-portrait{position:relative;}
+.about-portrait img{border-radius:var(--radius); border:1px solid var(--line); background:var(--bg-tint);}
+.about-portrait .tagchip{position:absolute; bottom:-14px; left:-14px; background:var(--surface); border:1px solid var(--line-strong); border-radius:100px; padding:9px 16px; font-family:var(--mono); font-size:11.5px; color:var(--ink-soft); box-shadow:var(--shadow-sm);}
+.about-copy p{color:var(--ink-soft); font-size:16px; margin-bottom:18px;}
+.about-copy p em{font-family:var(--serif); font-style:italic; font-size:1.06em; color:var(--ink);}
+.stack{margin-top:30px;}
+.stack h4{font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:14px;}
+.stack .pills{display:flex; flex-wrap:wrap; gap:8px;}
+.stack .pills span{font-family:var(--mono); font-size:12px; border:1px solid var(--line-strong); border-radius:100px; padding:6px 13px; color:var(--ink-soft);}
+
+/* ============ TIMELINE ============ */
+.tl-item{display:grid; grid-template-columns:1fr; gap:8px; padding:34px 0; border-top:1px solid var(--line);}
+@media (min-width:820px){ .tl-item{grid-template-columns:.4fr 1fr; gap:48px;} }
+.tl-item:last-child{border-bottom:1px solid var(--line);}
+.tl-item .tl-meta{font-family:var(--mono); font-size:12.5px; color:var(--muted); letter-spacing:.03em;}
+.tl-item h3{font-family:var(--serif); font-size:24px; font-weight:500; margin-bottom:12px;}
+.tl-item ul{list-style:none; display:flex; flex-direction:column; gap:9px;}
+.tl-item li{position:relative; padding-left:20px; color:var(--ink-soft); font-size:14.5px;}
+.tl-item li::before{content:""; position:absolute; left:0; top:10px; width:6px; height:6px; border-radius:50%; background:var(--accent);}
+
+/* ============ WRITING / LINKEDIN ============ */
+.posts{display:grid; grid-template-columns:1fr; gap:20px;}
+@media (min-width:760px){ .posts{grid-template-columns:repeat(3,1fr);} }
+.post{
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+  padding:24px; display:flex; flex-direction:column; gap:16px; min-height:280px;
+  transition:transform .5s var(--ease), border-color .3s;
+}
+.post:hover{transform:translateY(-5px); border-color:var(--line-strong);}
+.post .p-head{display:flex; align-items:center; gap:12px;}
+.post .p-head .av{width:40px; height:40px; border-radius:50%; background:var(--accent-wash); color:var(--accent-ink); display:grid; place-items:center; font-size:15px;}
+.post .p-head .who{font-size:13px; font-weight:600;}
+.post .p-head .when{font-family:var(--mono); font-size:11px; color:var(--muted);}
+.post .p-body{font-size:14px; color:var(--ink-soft); line-height:1.6; flex:1;}
+.post .p-foot{display:flex; align-items:center; gap:18px; font-family:var(--mono); font-size:11.5px; color:var(--muted); border-top:1px solid var(--line); padding-top:14px;}
+.post .p-foot .ln{margin-left:auto; color:var(--accent-ink);}
+.post.placeholder{border-style:dashed; align-items:flex-start; justify-content:center;}
+.post.placeholder .ph-note{font-family:var(--mono); font-size:12px; color:var(--muted); line-height:1.6;}
+
+/* ============ CONTACT ============ */
+#contact{text-align:center;}
+#contact h2{font-size:clamp(38px,6vw,72px); max-width:18ch; margin:0 auto;}
+#contact .lead{margin:26px auto 0; max-width:44ch; color:var(--ink-soft);}
+.contact-actions{margin-top:44px; display:flex; flex-wrap:wrap; gap:14px; justify-content:center;}
+.copy-btn .done{display:none;}
+.copy-btn.copied .idle{display:none;}
+.copy-btn.copied .done{display:inline;}
+.contact-secondary{margin-top:30px; display:flex; gap:26px; justify-content:center; flex-wrap:wrap; font-family:var(--mono); font-size:13px; color:var(--muted);}
+.contact-secondary a{display:inline-flex; align-items:center; gap:8px;}
+.contact-secondary a:hover{color:var(--ink);}
+
+/* ============ FOOTER ============ */
+footer.site{border-top:1px solid var(--line); padding:44px 0;}
+footer.site .wrap{display:flex; flex-wrap:wrap; gap:16px; justify-content:space-between; align-items:center; font-family:var(--mono); font-size:12px; color:var(--muted);}
+footer.site .to-top{display:inline-flex; align-items:center; gap:8px; transition:gap .25s var(--ease);}
+footer.site .to-top:hover{gap:12px; color:var(--ink);}
+
+/* ============ REVEAL ============ */
+[data-reveal]{opacity:0; transform:translateY(26px); transition:opacity .9s var(--ease), transform .9s var(--ease);}
+[data-reveal].in{opacity:1; transform:none;}
+@media (prefers-reduced-motion:reduce){
+  [data-reveal],[data-reveal].in{opacity:1 !important; transform:none !important; transition:none !important;}
+  .line-mask > span{transform:none !important;}
+  .marquee-track{animation:none !important;}
+  #intro{display:none !important;}
+  .hero .status-badge .live::after{animation:none !important;}
+}
+</style>
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body>
 
-    <!-- Header Section -->
-    <header class="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-teal-500 to-blue-500 text-white relative px-4 md:px-8">
-        <div class="flex flex-col md:flex-row items-center space-y-8 md:space-x-12 md:space-y-0">
-            <img 
-                src="https://pietrofdev.github.io/Portfolio-Pietro/src/images/profile.png" 
-                alt="Your Picture" 
-                class="w-40 h-40 md:w-56 md:h-56 rounded-full border-4 border-white shadow-lg"
-            >
-            <div class="text-center md:text-left">
-                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold">Hi, I'm Pietro Favoreto</h1>
-                <p class="text-xl sm:text-2xl mt-4">Building smart solutions for your problems.</p>
-            </div>
+<!-- ================= INTRO ================= -->
+<div id="intro" aria-hidden="true">
+  <div class="intro-inner">
+    <div class="intro-name">Pietro Favoreto</div>
+    <div class="intro-role">Desenvolvedor · Sistemas sob medida</div>
+    <div class="intro-bar"></div>
+  </div>
+</div>
+
+<div class="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+<div id="progress" aria-hidden="true"></div>
+
+<!-- ================= NAV ================= -->
+<header class="nav">
+  <div class="wrap">
+    <a href="#top" class="brand" data-cursor><span class="dotmark"></span>Pietro Favoreto</a>
+    <nav class="nav-links">
+      <a href="#work">Trabalhos</a>
+      <a href="#process">Processo</a>
+      <a href="#about">Sobre</a>
+      <a href="#writing">Escrita</a>
+      <a href="#contact">Contato</a>
+    </nav>
+    <div class="nav-right">
+      <button class="theme-toggle" id="theme-toggle" aria-label="Alternar tema" data-cursor><i class="fa-solid fa-moon"></i></button>
+      <a href="#contact" class="btn btn-primary btn-sm nav-cta" data-cursor>Falar sobre um projeto</a>
+      <button class="menu-btn" id="menu-btn" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div id="mobile-menu">
+  <a href="#work">Trabalhos</a>
+  <a href="#process">Processo</a>
+  <a href="#about">Sobre</a>
+  <a href="#writing">Escrita</a>
+  <a href="#contact">Contato</a>
+  <div class="mm-meta">pifavoreto@gmail.com</div>
+</div>
+
+<span id="top"></span>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="hero">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="grain"></div>
+  </div>
+  <div class="wrap">
+    <div class="status-badge" data-reveal>
+      <span class="live"></span> Disponível para novos projetos — 2026
+    </div>
+    <h1 id="hero-title">
+      <span class="line-mask"><span>Sites e sistemas</span></span>
+      <span class="line-mask"><span>sob medida que</span></span>
+      <span class="line-mask"><span><em>aguentam</em> produção.</span></span>
+    </h1>
+    <p class="lead" data-reveal style="--d:.2s">
+      Sou o Pietro. Há 2 anos e meio construo back-end, integrações de mensageria e APIs numa empresa de tecnologia — e, em paralelo, entrego sites e sistemas de gestão completos para clientes que precisam operar o próprio negócio sem depender de mim depois.
+    </p>
+    <div class="hero-actions" data-reveal style="--d:.3s">
+      <a href="#work" class="btn btn-primary" data-cursor><i class="fa-solid fa-arrow-down"></i> Ver trabalhos</a>
+      <a href="#contact" class="btn btn-ghost" data-cursor><i class="fa-regular fa-envelope"></i> Começar um projeto</a>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>C#</span><span>PHP</span><span>Python</span><span>MySQL</span><span>API REST</span><span>JavaScript</span><span>Google Apps Script</span><span>Integrações SMS · E-mail · WhatsApp</span><span>Git</span>
+        <span>C#</span><span>PHP</span><span>Python</span><span>MySQL</span><span>API REST</span><span>JavaScript</span><span>Google Apps Script</span><span>Integrações SMS · E-mail · WhatsApp</span><span>Git</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATS ================= -->
+<section style="padding:4px 0 0;">
+  <div class="wrap">
+    <div class="stats" data-reveal>
+      <div class="stat"><div class="num"><span data-count="2.5" data-dec="1">0</span><small>anos</small></div><div class="lbl">construindo em produção</div></div>
+      <div class="stat"><div class="num"><span data-count="3">0</span></div><div class="lbl">sites de clientes no ar</div></div>
+      <div class="stat"><div class="num"><span data-count="8">0</span><small>+</small></div><div class="lbl">projetos entregues</div></div>
+      <div class="stat"><div class="num"><span data-count="4">0</span></div><div class="lbl">linguagens no dia a dia</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WORK ================= -->
+<section id="work">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <div>
+        <div class="eyebrow">Trabalhos selecionados</div>
+        <h2>Projetos <em>entregues</em><br>para clientes reais.</h2>
+      </div>
+      <p class="sh-note">Cada card mostra um screenshot do projeto no ar. Passe o mouse para ver o site rodando ao vivo, ou clique para abrir.</p>
+    </div>
+
+    <!-- 01 -->
+    <article class="work-item" data-reveal>
+      <div class="work-media">
+        <div class="browser" data-preview="https://colegiosaber.org" data-cursor>
+          <div class="browser-bar"><i></i><i></i><i></i><span class="url">colegiosaber.org</span><span class="live-tag">● AO VIVO</span></div>
+          <div class="viewport">
+            <img src="src/images/work/colegiosaber.jpg" alt="Site do Colégio Saber" loading="lazy" width="1600" height="1000">
+            <span class="hint">preview ao vivo</span>
+          </div>
         </div>
-        <!-- Code typing -->
-        <div class="mt-12 w-full md:w-1/2 mx-auto">
-            <div class="editor">
-                <div><span class="line-number">1</span><span class="code line-number">// Writing efficient code</span></div>
-                <div><span class="line-number">2</span><span class="code"><span style="color: #B362FF;">function</span> <span style="color: yellow;">main</span>() {</span></div>
-                <div><span class="line-number">3</span><span class="code">    console.<span style="color: #43c65b;">log</span>('<span id="typing-animation"></span><span class="cursor">|</span>');</span></div>
-                <div><span class="line-number">4</span><span class="code">}</span></div>
-            </div>
+      </div>
+      <div class="work-meta">
+        <span class="idx">01</span>
+        <h3>Colégio Saber</h3>
+        <div class="cat">Freelance · Site institucional</div>
+        <p>Página institucional para o colégio se apresentar a novas famílias em Curitiba: identidade visual, informações institucionais, infraestrutura e contato — com foco em carregamento rápido, responsividade e um caminho claro até a matrícula.</p>
+        <div class="kv"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>GitHub Pages</span></div>
+        <div class="links">
+          <a href="https://colegiosaber.org" target="_blank" rel="noopener" data-cursor><i class="fa-solid fa-arrow-up-right-from-square"></i> Ver site</a>
+          <a href="https://github.com/PietroFDEV/Colegio-Saber" target="_blank" rel="noopener" data-cursor><i class="fa-brands fa-github"></i> Repositório</a>
         </div>
-        <!-- Scroll Arrow -->
-        <div class="absolute bottom-6">
-            <svg class="w-16 h-16 text-white arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-            </svg>
+      </div>
+    </article>
+
+    <!-- 02 -->
+    <article class="work-item flip" data-reveal>
+      <div class="work-media">
+        <div class="browser" data-preview="https://karaokefila.com" data-cursor>
+          <div class="browser-bar"><i></i><i></i><i></i><span class="url">karaokefila.com</span><span class="live-tag">● AO VIVO</span></div>
+          <div class="viewport">
+            <img src="src/images/work/karaokefila.jpg" alt="Karaoke Fila — landing" loading="lazy" width="1600" height="1000">
+            <span class="hint">preview ao vivo</span>
+          </div>
         </div>
-    </header>
+      </div>
+      <div class="work-meta">
+        <span class="idx">02</span>
+        <h3>Karaoke Fila</h3>
+        <div class="cat">Produto próprio · Web app</div>
+        <p>Produto para digitalizar a fila do karaokê: cada bar ganha o próprio site e um painel para organizar quem canta a seguir em tempo real, sem papel e sem confusão no microfone. Inclui página de contratação e área de login para os estabelecimentos.</p>
+        <div class="kv"><span>Full-stack</span><span>Tempo real</span><span>Multi-tenant</span><span>API REST</span></div>
+        <div class="links">
+          <a href="https://karaokefila.com" target="_blank" rel="noopener" data-cursor><i class="fa-solid fa-arrow-up-right-from-square"></i> Ver site</a>
+        </div>
+      </div>
+    </article>
 
-    <!-- About Section -->
-    <main class="container mx-auto px-6 py-12">
-        <section>
-            <h2 class="text-3xl font-bold text-center mb-6">About Me</h2>
-            <p class="leading-relaxed text-lg">
-                Detail-oriented and results-driven Software Developer with experience in analysis, development, and implementation of robust solutions. Proven track record of identifying and resolving issues with precision, enhancing project performance, and developing new functionalities to streamline operations. Adept at working with messaging systems, such as SMS, Emails, and WhatsApp, while maintaining a strong focus on backend development and system integration. Collaborative team player with excellent problem-solving abilities and a passion for delivering high-quality solutions.
-            </p>
-        </section>
+    <!-- 03 -->
+    <article class="work-item" data-reveal>
+      <div class="work-media">
+        <div class="browser" data-preview="https://ciadf.com.br" data-cursor>
+          <div class="browser-bar"><i></i><i></i><i></i><span class="url">ciadf.com.br</span><span class="live-tag">● AO VIVO</span></div>
+          <div class="viewport">
+            <img src="src/images/work/ciadf.jpg" alt="Site da CIA DF — Companhia de Dança" loading="lazy" width="1600" height="1000">
+            <span class="hint">preview ao vivo</span>
+          </div>
+        </div>
+      </div>
+      <div class="work-meta">
+        <span class="idx">03</span>
+        <h3>CIA DF — Companhia de Dança</h3>
+        <div class="cat">Freelance · Site + captação de alunos</div>
+        <p>Site da companhia de dança com identidade forte, apresentação dos cursos, equipe, grade de horários e caminho direto para matrícula e WhatsApp. Feito para converter visitante em aluno e sustentar as campanhas de divulgação da escola.</p>
+        <div class="kv"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>PHP</span></div>
+        <div class="links">
+          <a href="https://ciadf.com.br" target="_blank" rel="noopener" data-cursor><i class="fa-solid fa-arrow-up-right-from-square"></i> Ver site</a>
+        </div>
+      </div>
+    </article>
 
-         <!-- Embedded Websites Section -->
-         <section class="mt-12">
-            <h2 class="text-3xl font-bold text-center">Projects</h2>
-            <p class="text-center mt-4 text-gray-600 mb-6">
-                Explore some of the websites I developed and contributed to.
-            </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="projects-grid">
-                <!-- Project 1 -->
-                <div class="bg-white rounded-lg shadow-lg p-3">
-                    <h3 class="text-xl font-bold mb-2">Colégio Saber Website</h3>
-                    <!-- Link to the project page -->
-                    <div class="mt-4 flex justify-between items-center mb-4">
-                        <a 
-                            href="https://colegiosaber.org" 
-                            target="_blank" 
-                            class="text-sm text-teal-600 hover:underline"
-                        >
-                            View Project
-                        </a>
-                        <a href="https://github.com/PietroFDEV/Colegio-Saber" target="_blank">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/1200px-Octicons-mark-github.svg.png" alt="GitHub Repository" class="w-8 h-8">
-                        </a>
-                    </div>
-                    
-                    <div class="w-full aspect-video bg-gray-200 rounded-lg overflow-hidden shadow">
-                        <iframe 
-                            src="https://colegiosaber.org" 
-                            class="w-full h-full border-none" 
-                            allowfullscreen
-                        ></iframe>
-                    </div>
-                </div>
+    <!-- 04 — private system, no live preview -->
+    <article class="work-item flip" data-reveal>
+      <div class="work-media">
+        <div class="browser" data-cursor>
+          <div class="browser-bar"><i></i><i></i><i></i><span class="url">sistema privado · acesso restrito</span></div>
+          <div class="viewport dash">
+            <div class="row"><span>módulo financeiro</span><b>ativo</b></div>
+            <div class="row"><span>turmas &amp; alunos</span><b>sincronizado</b></div>
+            <div class="row"><span>mensalidades / inadimplência</span><b>conciliado</b></div>
+            <div class="row"><span>relatórios gerenciais</span><b>gerando</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="work-meta">
+        <span class="idx">04</span>
+        <h3>Sistema de Gestão — Companhia de Dança</h3>
+        <div class="cat">Freelance · Gestão empresarial</div>
+        <p>Plataforma sob medida para administrar a escola por dentro: controle financeiro com histórico de mensalidades e inadimplência, cadastro de alunos e turmas vinculado aos pagamentos, e relatórios gerenciais para a direção acompanhar o negócio. A cliente opera tudo sozinha.</p>
+        <div class="kv"><span>C#</span><span>MySQL</span><span>Relatórios</span><span>Sistema privado</span></div>
+      </div>
+    </article>
+  </div>
+</section>
 
-                <!-- Project 2 -->
-                <div class="bg-white rounded-lg shadow-lg p-3">
-                    <h3 class="text-xl font-bold mb-2">Tic-Tac-Toe Game</h3>
-                    <!-- Link to the project page -->
-                    <div class="mt-4 flex justify-between items-center mb-4">
-                        <a 
-                            href="https://pietrofdev.github.io/Jogo-da-Velha/" 
-                            target="_blank" 
-                            class="text-sm text-teal-600 hover:underline mb-4 inline-block"
-                        >
-                            View Project
-                        </a>
-                        <a href="https://github.com/PietroFDEV/Jogo-da-Velha" target="_blank">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/1200px-Octicons-mark-github.svg.png" alt="GitHub Repository" class="w-8 h-8 mx-auto">
-                        </a>
-                    </div>
-                    <div class="w-full aspect-video bg-gray-200 rounded-lg overflow-hidden shadow">
-                        <iframe 
-                            src="https://pietrofdev.github.io/Jogo-da-Velha/" 
-                            class="w-full h-full border-none" 
-                            allowfullscreen
-                        ></iframe>
-                    </div>
-                </div>
-            </div>
-            <!-- See More Button -->
-            <div id="see-more-div" class="flex justify-center mt-6">
-                <button id="see-more-btn" class="bg-teal-600 text-white px-8 py-4 rounded hover:bg-teal-600 focus:outline-none text-lg mg-auto">
-                    See More
-                </button>
-            </div>
-        </section>
+<!-- ================= MORE PROJECTS ================= -->
+<section style="padding-top:0;">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <div>
+        <div class="eyebrow">Também no ar</div>
+        <h2>Projetos pessoais<br>&amp; experimentos.</h2>
+      </div>
+      <p class="sh-note">Automação, jogos e sistemas menores — a maioria com código aberto no GitHub.</p>
+    </div>
 
+    <div class="grid-projects">
+      <div class="mini" data-reveal>
+        <div class="mini-top"><span class="mini-cat">Automação</span><span class="mini-icn"><i class="fa-solid fa-robot"></i></span></div>
+        <h4>Gerenciador de Atividades — Google Classroom</h4>
+        <p>Script em Google Apps Script conectado ao Google Classroom para acompanhar entregas, prazos e participação dos alunos automaticamente, centralizando tudo em planilhas prontas para o professor.</p>
+        <div class="mini-tags"><span>Apps Script</span><span>Classroom API</span></div>
+      </div>
 
-        <!-- Projects Section -->
-        <section class="mt-12">
-            <h2 class="text-3xl font-bold text-center mb-6">Professional Experience</h2>
-            <div class="space-y-6">
-                <div class="p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                    <h3 class="font-bold text-xl">Analyst and Developer</h3>
-                    <p class="text-sm mt-2">Bellinati Perez | Mar 2022 – Present</p>
-                    <ul class="list-disc ml-6 mt-4 space-y-2">
-                        <li>Analyzed complex technical issues, implemented precise solutions through optimized code, and ensured smooth project execution within deadlines.</li>
-                        <li>Designed and implemented new features and functionalities across various projects, improving overall system efficiency and meeting business requirements.</li>
-                        <li>Played a key role in the Message Broker Team, developing systems for managing client communications via SMS, Emails, and WhatsApp.</li>
-                        <li>Implemented robust solutions for sending messages to clients, ensuring delivery accuracy and compliance.</li>
-                        <li>Developed callback mechanisms to process responses effectively, facilitating real-time feedback and enhancing client engagement.</li>
-                        <li>Built and optimized number and email sanitization logic, increasing data reliability and improving communication success rates.</li>
-                        <li>Contributed to the Dialer Project, implementing core functionality for automated call operations, improving customer contact efficiency.</li>
-                        <li>Collaborated with cross-functional teams to ensure seamless integration between systems, leveraging APIs and other middleware tools.</li>
-                        <li>Focused on clean, maintainable, and efficient code while adhering to industry best practices.</li>
-                        <li>Assisted in debugging, testing, and improving existing applications, ensuring high system reliability and reducing downtimes.</li>
-                    </ul>
-                </div>
-                <div class="p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                    <h3 class="font-bold text-xl">Front-End Developer</h3>
-                    <p class="text-sm mt-2">Freelance Projects</p>
-                    <ul class="list-disc ml-6 mt-4 space-y-2">
-                        <li>Developed the front page of the Colégio Saber website using HTML, CSS, and JavaScript.</li>
-                        <li>Created a virtual casino application with interactive elements, leveraging HTML, CSS, and JavaScript for a seamless user experience.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+      <div class="mini" data-reveal style="--d:.05s">
+        <div class="mini-top"><span class="mini-cat">Jogo · JS puro</span><span class="mini-icn"><i class="fa-solid fa-hashtag"></i></span></div>
+        <h4>Jogo da Velha</h4>
+        <p>Tabuleiro e lógica de vitória em JavaScript puro, com manipulação de DOM e trilha sonora — um estudo de fundamentos bem acabado.</p>
+        <div class="mini-tags"><span>JavaScript</span><span>HTML</span><span>CSS</span></div>
+        <div class="mini-links">
+          <a href="https://pietrofdev.github.io/Jogo-da-Velha/" target="_blank" rel="noopener" data-cursor><i class="fa-solid fa-arrow-up-right-from-square"></i> Jogar</a>
+          <a href="https://github.com/PietroFDEV/Jogo-da-Velha" target="_blank" rel="noopener" data-cursor><i class="fa-brands fa-github"></i> Código</a>
+        </div>
+      </div>
 
-        <!-- Contact Section -->
-        <section class="mt-12">
-            <h2 class="text-3xl font-bold text-center mb-6">Contact</h2>
-            <p class="text-center">Want to collaborate with me? Feel free to reach out!</p>
-            <div class="flex justify-center mt-4 space-x-6">
-                <a href="mailto:pifavoreto@gmail.com" class="text-teal-500 hover:underline">pifavoreto@gmail.com</a>
-                <!-- LinkedIn Icon -->
-                <a href="https://www.linkedin.com/in/pietro-goudel-favoreto-255355208/?locale=en_US" target="_blank" class="text-teal-500 hover:text-teal-700">
-                    <i class="fa-brands fa-linkedin text-2xl"></i>
-                </a>
-            </div>
-        </section>
+      <div class="mini" data-reveal style="--d:.1s">
+        <div class="mini-top"><span class="mini-cat">Template · UI</span><span class="mini-icn"><i class="fa-solid fa-dice"></i></span></div>
+        <h4>Cassino Template</h4>
+        <p>Template de cassino virtual com catálogo de jogos, carrossel e elementos interativos, construído para praticar interfaces mais densas e dinâmicas.</p>
+        <div class="mini-tags"><span>JavaScript</span><span>HTML</span><span>CSS</span></div>
+        <div class="mini-links">
+          <a href="https://pietrofdev.github.io/VintePila_Cassino/" target="_blank" rel="noopener" data-cursor><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir</a>
+          <a href="https://github.com/PietroFDEV/VintePila_Cassino" target="_blank" rel="noopener" data-cursor><i class="fa-brands fa-github"></i> Código</a>
+        </div>
+      </div>
 
+      <div class="mini" data-reveal>
+        <div class="mini-top"><span class="mini-cat">Sistema · C#</span><span class="mini-icn"><i class="fa-regular fa-calendar-check"></i></span></div>
+        <h4>Gestão de Eventos</h4>
+        <p>Sistema para organização de eventos com cadastro e acompanhamento das etapas do processo, do planejamento à realização.</p>
+        <div class="mini-tags"><span>C#</span></div>
+        <div class="mini-links">
+          <a href="https://github.com/PietroFDEV/GestaoDeEventos" target="_blank" rel="noopener" data-cursor><i class="fa-brands fa-github"></i> Código</a>
+        </div>
+      </div>
 
-    </main>
+      <div class="mini" data-reveal style="--d:.05s">
+        <div class="mini-top"><span class="mini-cat">Sistema · C#</span><span class="mini-icn"><i class="fa-solid fa-list-check"></i></span></div>
+        <h4>Gerenciador de Projetos</h4>
+        <p>Aplicação para organizar projetos e tarefas, construída para consolidar boas práticas de estruturação e arquitetura de sistemas.</p>
+        <div class="mini-tags"><span>C#</span></div>
+        <div class="mini-links">
+          <a href="https://github.com/PietroFDEV/GerenciadorDeProjetos" target="_blank" rel="noopener" data-cursor><i class="fa-brands fa-github"></i> Código</a>
+        </div>
+      </div>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-gray-400 text-center py-6 mt-12">
-        <p>&copy; 2025 Pietro Favoreto. All rights reserved.</p>
-    </footer>
+      <div class="mini" data-reveal style="--d:.1s">
+        <div class="mini-top"><span class="mini-cat">GitHub</span><span class="mini-icn"><i class="fa-brands fa-github"></i></span></div>
+        <h4>Mais no GitHub</h4>
+        <p>Estudos, protótipos e repositórios de apoio. O perfil reúne o histórico completo de commits e experimentos.</p>
+        <div class="mini-tags"><span>@PietroFDEV</span></div>
+        <div class="mini-links">
+          <a href="https://github.com/PietroFDEV" target="_blank" rel="noopener" data-cursor><i class="fa-solid fa-arrow-up-right-from-square"></i> Ver perfil</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script>
-        const phrases = [
-            'Writing efficient code...',
-            'Building scalable applications...',
-            'Creating seamless UI/UX experiences...',
-            'Clean code...',
-            'SOLID...'
-        ];
+<!-- ================= PROCESS ================= -->
+<section id="process">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <div>
+        <div class="eyebrow">Como eu trabalho</div>
+        <h2>Do problema<br>até o <em>botão que funciona</em>.</h2>
+      </div>
+      <p class="sh-note">Sem entregar caixa-preta. O cliente termina o projeto sabendo operar o próprio sistema.</p>
+    </div>
+    <div class="process-grid">
+      <div class="step" data-reveal><div class="n">01</div><h4>Diagnóstico</h4><p>Entendo o problema real, quem vai usar e o que não pode faltar no dia um. Escopo enxuto e honesto.</p></div>
+      <div class="step" data-reveal style="--d:.06s"><div class="n">02</div><h4>Proposta</h4><p>Um caminho prático com prazo, stack e entregas divididas em partes que já geram valor sozinhas.</p></div>
+      <div class="step" data-reveal style="--d:.12s"><div class="n">03</div><h4>Build</h4><p>Desenvolvimento com entregas parciais para você ver de perto, testar e ajustar antes do fim.</p></div>
+      <div class="step" data-reveal style="--d:.18s"><div class="n">04</div><h4>Entrega &amp; suporte</h4><p>Publicação, treino rápido de uso e um período de acompanhamento para estabilizar em produção.</p></div>
+    </div>
+  </div>
+</section>
 
-        let phraseIndex = 0;
-        let charIndex = 0;
-        const typingElement = document.getElementById('typing-animation');
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <div>
+        <div class="eyebrow">Sobre</div>
+        <h2>Foco no problema,<br>não em <em>empilhar</em> tecnologia.</h2>
+      </div>
+    </div>
+    <div class="about-grid">
+      <div class="about-portrait" data-reveal>
+        <img src="src/images/profile.png" alt="Pietro Favoreto" width="600" height="600" loading="lazy">
+        <span class="tagchip">Curitiba, BR · remoto</span>
+      </div>
+      <div class="about-copy" data-reveal style="--d:.1s">
+        <p>Nos últimos 2 anos e meio trabalhei na equipe de <em>Message Broker</em> de uma empresa de tecnologia, construindo os sistemas que enviam e recebem mensagens de clientes por SMS, e-mail e WhatsApp — do disparo ao callback de confirmação, passando pela sanitização de números e e-mails para reduzir falhas de entrega.</p>
+        <p>Fora do trabalho fixo, atendo clientes como freelancer: um sistema de gestão completo para uma companhia de dança, sites institucionais, um produto para filas de karaokê e um automatizador de atividades para o Google Classroom. Em todos, o cliente entrou com um problema real e saiu com um sistema que <em>ele mesmo</em> consegue operar.</p>
+        <div class="stack">
+          <h4>Stack principal</h4>
+          <div class="pills">
+            <span>C#</span><span>PHP</span><span>Python</span><span>MySQL</span><span>API REST</span><span>JavaScript</span><span>Google Apps Script</span><span>Git</span>
+          </div>
+        </div>
+      </div>
+    </div>
 
-        function typeEffect() {
-            if (charIndex < phrases[phraseIndex].length) {
-                typingElement.textContent += phrases[phraseIndex].charAt(charIndex);
-                charIndex++;
-                setTimeout(typeEffect, 100);
-            } else {
-                setTimeout(eraseEffect, 2000);
-            }
+    <div style="margin-top:80px;">
+      <div class="eyebrow" data-reveal style="margin-bottom:34px;">Experiência</div>
+      <div class="tl-item" data-reveal>
+        <div class="tl-meta">Bellinati Perez<br>Mar 2022 — Presente</div>
+        <div>
+          <h3>Analista e Desenvolvedor</h3>
+          <ul>
+            <li>Equipe de Message Broker: sistemas de envio e recebimento de mensagens por SMS, e-mail e WhatsApp, com callbacks para processar respostas em tempo real.</li>
+            <li>Construção da lógica de sanitização de números e e-mails, aumentando a taxa de entrega e a confiabilidade dos dados.</li>
+            <li>Contribuição no Projeto Dialer, com automação de operações de chamadas.</li>
+            <li>Integração entre sistemas via APIs, em colaboração com times multidisciplinares.</li>
+            <li>Debugging, testes e manutenção de aplicações em produção.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tl-item" data-reveal>
+        <div class="tl-meta">Projetos freelance<br>Em paralelo</div>
+        <div>
+          <h3>Desenvolvedor Freelance</h3>
+          <ul>
+            <li>Sistema de gestão financeira, de turmas e alunos para uma companhia de dança.</li>
+            <li>Sites institucionais e de captação (Colégio Saber, CIA DF) em HTML, CSS, JavaScript e PHP.</li>
+            <li>Karaoke Fila — produto web multi-tenant para gestão de filas de karaokê em tempo real.</li>
+            <li>Automação de acompanhamento de atividades no Google Classroom via Google Apps Script.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WRITING / LINKEDIN ================= -->
+<section id="writing">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <div>
+        <div class="eyebrow">Escrita</div>
+        <h2>O que eu compartilho<br>no <em>LinkedIn</em>.</h2>
+      </div>
+      <p class="sh-note">Notas sobre back-end, integrações e o dia a dia de entregar software que precisa funcionar.</p>
+    </div>
+
+    <!--
+      ========================================================================
+      COMO COLOCAR SEUS POSTS REAIS DO LINKEDIN:
+      1. Abra o post no LinkedIn → botão "..." → "Incorporar este post".
+      2. Copie o <iframe> gerado.
+      3. Substitua um bloco <div class="post placeholder"> ... </div> abaixo
+         pelo iframe, envolto em <div class="post" style="padding:0;overflow:hidden">.
+      Enquanto não tiver os embeds, os cards abaixo servem de rascunho visual.
+      ========================================================================
+    -->
+
+    <div class="posts">
+      <article class="post" data-reveal>
+        <div class="p-head">
+          <div class="av"><i class="fa-brands fa-linkedin-in"></i></div>
+          <div><div class="who">Pietro Favoreto</div><div class="when">rascunho · exemplo</div></div>
+        </div>
+        <div class="p-body">“Como a sanitização de números e e-mails antes do disparo derrubou nossa taxa de falha de entrega — e por que quase ninguém trata isso como parte do produto.”</div>
+        <div class="p-foot"><span><i class="fa-regular fa-heart"></i> —</span><span><i class="fa-regular fa-comment"></i> —</span><a class="ln" href="https://www.linkedin.com/in/pietro-goudel-favoreto-255355208/" target="_blank" rel="noopener" data-cursor>Ver no LinkedIn</a></div>
+      </article>
+
+      <article class="post" data-reveal style="--d:.06s">
+        <div class="p-head">
+          <div class="av"><i class="fa-brands fa-linkedin-in"></i></div>
+          <div><div class="who">Pietro Favoreto</div><div class="when">rascunho · exemplo</div></div>
+        </div>
+        <div class="p-body">“Entreguei um sistema de gestão para uma escola de dança. O melhor feedback não foi técnico: ‘consigo fechar o mês sozinha agora.’”</div>
+        <div class="p-foot"><span><i class="fa-regular fa-heart"></i> —</span><span><i class="fa-regular fa-comment"></i> —</span><a class="ln" href="https://www.linkedin.com/in/pietro-goudel-favoreto-255355208/" target="_blank" rel="noopener" data-cursor>Ver no LinkedIn</a></div>
+      </article>
+
+      <article class="post placeholder" data-reveal style="--d:.12s">
+        <div class="p-head">
+          <div class="av"><i class="fa-solid fa-plus"></i></div>
+          <div><div class="who">Seu próximo post</div><div class="when">embed do LinkedIn</div></div>
+        </div>
+        <div class="ph-note">Cole aqui o <code>&lt;iframe&gt;</code> de “Incorporar este post” do LinkedIn. Instruções no comentário do HTML desta seção.</div>
+      </article>
+    </div>
+
+    <div style="margin-top:34px;" data-reveal>
+      <a href="https://www.linkedin.com/in/pietro-goudel-favoreto-255355208/" target="_blank" rel="noopener" class="btn btn-ghost" data-cursor><i class="fa-brands fa-linkedin"></i> Seguir no LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact">
+  <div class="wrap">
+    <div class="eyebrow" data-reveal style="justify-content:center;">Contato</div>
+    <h2 data-reveal style="--d:.05s">Tem um sistema para<br>construir ou <em>consertar</em>?</h2>
+    <p class="lead" data-reveal style="--d:.1s">Me conta o problema em duas linhas. Respondo com um diagnóstico rápido e um caminho prático — sem enrolação.</p>
+    <div class="contact-actions" data-reveal style="--d:.15s">
+      <a href="mailto:pifavoreto@gmail.com?subject=Projeto%20—%20contato%20pelo%20portf%C3%B3lio" class="btn btn-primary" data-cursor><i class="fa-regular fa-envelope"></i> pifavoreto@gmail.com</a>
+      <button class="btn btn-ghost copy-btn" id="copy-btn" data-cursor><span class="idle"><i class="fa-regular fa-copy"></i> Copiar e-mail</span><span class="done"><i class="fa-solid fa-check"></i> Copiado!</span></button>
+    </div>
+    <div class="contact-secondary" data-reveal style="--d:.2s">
+      <a href="https://www.linkedin.com/in/pietro-goudel-favoreto-255355208/" target="_blank" rel="noopener" data-cursor><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+      <a href="https://github.com/PietroFDEV" target="_blank" rel="noopener" data-cursor><i class="fa-brands fa-github"></i> GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <span>© <span id="year">2026</span> Pietro Favoreto</span>
+    <span>Feito à mão · HTML, CSS &amp; JavaScript · GitHub Pages</span>
+    <a href="#top" class="to-top" data-cursor>Voltar ao topo <i class="fa-solid fa-arrow-up"></i></a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var finePointer  = window.matchMedia('(pointer: fine)').matches;
+
+  /* ---------- INTRO ---------- */
+  var intro = document.getElementById('intro');
+  function killIntro(){ if(intro){ intro.classList.add('done'); setTimeout(function(){ intro && intro.remove(); }, 1100); } }
+  if(reduceMotion || sessionStorage.getItem('introSeen')){
+    intro && intro.remove();
+  }else{
+    sessionStorage.setItem('introSeen','1');
+    window.addEventListener('load', function(){ setTimeout(killIntro, 1650); });
+    setTimeout(killIntro, 3200); // hard fallback
+  }
+
+  /* ---------- YEAR ---------- */
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ---------- THEME ---------- */
+  var root = document.documentElement;
+  var toggle = document.getElementById('theme-toggle');
+  var stored = localStorage.getItem('theme');
+  var sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  setTheme(stored || (sysDark ? 'dark' : 'light'));
+  function setTheme(t){
+    root.setAttribute('data-theme', t);
+    toggle.innerHTML = t === 'dark'
+      ? '<i class="fa-solid fa-sun"></i>'
+      : '<i class="fa-solid fa-moon"></i>';
+  }
+  toggle.addEventListener('click', function(){
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('theme', next);
+    setTheme(next);
+  });
+
+  /* ---------- MOBILE MENU ---------- */
+  var menuBtn = document.getElementById('menu-btn');
+  var mobileMenu = document.getElementById('mobile-menu');
+  function closeMenu(){ document.body.classList.remove('menu-open'); mobileMenu.classList.remove('open'); }
+  menuBtn.addEventListener('click', function(){
+    var open = mobileMenu.classList.toggle('open');
+    document.body.classList.toggle('menu-open', open);
+  });
+  mobileMenu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
+
+  /* ---------- NAV SCROLL STATE + PROGRESS ---------- */
+  var nav = document.querySelector('header.nav');
+  var progress = document.getElementById('progress');
+  function onScroll(){
+    var y = window.scrollY || window.pageYOffset;
+    nav.classList.toggle('scrolled', y > 20);
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.transform = 'scaleX(' + (h > 0 ? Math.min(y / h, 1) : 0) + ')';
+  }
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive:true });
+
+  /* ---------- ACTIVE NAV LINK ---------- */
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
+  var sections = navLinks.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+  if('IntersectionObserver' in window){
+    var navObs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          var id = '#' + e.target.id;
+          navLinks.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === id); });
         }
+      });
+    }, { rootMargin:'-45% 0px -50% 0px' });
+    sections.forEach(function(s){ s && navObs.observe(s); });
+  }
 
-        function eraseEffect() {
-            if (charIndex > 0) {
-                typingElement.textContent = phrases[phraseIndex].slice(0, charIndex - 1);
-                charIndex--;
-                setTimeout(eraseEffect, 50);
-            } else {
-                phraseIndex = (phraseIndex + 1) % phrases.length;
-                setTimeout(typeEffect, 500);
-            }
+  /* ---------- REVEAL ---------- */
+  var reveals = document.querySelectorAll('[data-reveal]');
+  if(reduceMotion || !('IntersectionObserver' in window)){
+    reveals.forEach(function(el){ el.classList.add('in'); });
+  }else{
+    var revObs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          var d = e.target.style.getPropertyValue('--d');
+          if(d) e.target.style.transitionDelay = d;
+          e.target.classList.add('in');
+          revObs.unobserve(e.target);
         }
+      });
+    }, { rootMargin:'0px 0px -8% 0px', threshold:0.12 });
+    reveals.forEach(function(el){ revObs.observe(el); });
+  }
 
-        typeEffect();
+  /* ---------- HERO TITLE LINE REVEAL ---------- */
+  var heroTitle = document.getElementById('hero-title');
+  function playHero(){ heroTitle.classList.add('reveal-in'); }
+  if(reduceMotion){ playHero(); }
+  else{ setTimeout(playHero, sessionStorage.getItem('introSeen') && !intro ? 200 : 1700); }
 
-        const moreProjects = [
-        {
-            title: "Cassino Template",
-            type: "iframe",
-            projectLink: "https://pietrofdev.github.io/VintePila_Cassino/",
-            githubLink: "https://github.com/PietroFDEV/VintePila_Cassino",
-            iframeSrc: "https://pietrofdev.github.io/VintePila_Cassino/"
-        },
-        {
-            title: "Events Managment",
-            type: "iframe",
-            projectLink: null,
-            githubLink: "https://github.com/PietroFDEV/GestaoDeEventos",
-            iframeSrc: "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7276989020671258624"
-        },
-        {
-            title: "Project Managment",
-            type: "iframe",
-            projectLink: null,
-            githubLink: "https://github.com/PietroFDEV/GerenciadorDeProjetos",
-            iframeSrc: "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7163231483409768448"
-        },
-    ];
-
-    const projectsGrid = document.getElementById("projects-grid");
-    const seeMoreBtn = document.getElementById("see-more-btn");
-    const seeMoreDiv = document.getElementById("see-more-div");
-
-    seeMoreBtn.addEventListener("click", () => {
-        moreProjects.forEach((project) => {
-            const projectDiv = document.createElement("div");
-            projectDiv.className = "bg-white rounded-lg shadow-lg p-3";
-
-            // Set up content based on type
-            let content;
-            content = `
-                <div class="w-full aspect-video bg-gray-200 rounded-lg overflow-hidden shadow">
-                    <iframe 
-                        src="${project.iframeSrc}" 
-                        class="w-full h-full border-none" 
-                        allowfullscreen
-                    ></iframe>
-                </div>`;
-            
-            // Add project card
-            projectDiv.innerHTML = `
-                <h3 class="text-xl font-bold mb-2">${project.title}</h3>
-                <div class="mt-4 flex justify-between items-center mb-4">
-                    ${
-                        project.projectLink
-                            ? `<a href="${project.projectLink}" target="_blank" class="text-sm text-teal-600 hover:underline">View Project</a>`
-                            : ""
-                    }
-                    <a href="${project.githubLink}" target="_blank">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/1200px-Octicons-mark-github.svg.png" alt="GitHub Repository" class="w-8 h-8">
-                    </a>
-                </div>
-                ${content}
-            `;
-            projectsGrid.appendChild(projectDiv);
-        });
-        seeMoreDiv.style.display = "none"; // Hide the button after loading
+  /* ---------- COUNT UP ---------- */
+  function countUp(el){
+    var target = parseFloat(el.getAttribute('data-count'));
+    var dec = parseInt(el.getAttribute('data-dec') || '0', 10);
+    var dur = 1400, start = performance.now();
+    function frame(now){
+      var p = Math.min((now - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = (target * eased).toFixed(dec).replace('.', ',');
+      if(p < 1) requestAnimationFrame(frame);
+      else el.textContent = target.toFixed(dec).replace('.', ',');
+    }
+    requestAnimationFrame(frame);
+  }
+  var counters = document.querySelectorAll('[data-count]');
+  if(reduceMotion || !('IntersectionObserver' in window)){
+    counters.forEach(function(el){
+      var dec = parseInt(el.getAttribute('data-dec') || '0', 10);
+      el.textContent = parseFloat(el.getAttribute('data-count')).toFixed(dec).replace('.', ',');
     });
-    </script>
+  }else{
+    var cObs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ countUp(e.target); cObs.unobserve(e.target); } });
+    }, { threshold:0.6 });
+    counters.forEach(function(el){ cObs.observe(el); });
+  }
+
+  /* ---------- LIVE PREVIEW ON HOVER ---------- */
+  if(finePointer){
+    document.querySelectorAll('.browser[data-preview]').forEach(function(box){
+      var url = box.getAttribute('data-preview');
+      var vp = box.querySelector('.viewport');
+      var timer = null, frame = null;
+      box.addEventListener('mouseenter', function(){
+        timer = setTimeout(function(){
+          if(!frame){
+            frame = document.createElement('iframe');
+            frame.setAttribute('loading','lazy');
+            frame.setAttribute('sandbox','allow-scripts allow-same-origin allow-popups allow-forms');
+            frame.setAttribute('referrerpolicy','no-referrer');
+            frame.setAttribute('title','Preview ao vivo');
+            frame.src = url;
+            vp.appendChild(frame);
+          }
+          vp.classList.add('playing');
+        }, 350);
+      });
+      box.addEventListener('mouseleave', function(){
+        clearTimeout(timer);
+        vp.classList.remove('playing');
+      });
+      box.addEventListener('click', function(){ window.open(url, '_blank', 'noopener'); });
+    });
+  }else{
+    document.querySelectorAll('.browser[data-preview]').forEach(function(box){
+      box.style.cursor = 'pointer';
+      box.addEventListener('click', function(){ window.open(box.getAttribute('data-preview'), '_blank', 'noopener'); });
+    });
+  }
+
+  /* ---------- COPY EMAIL ---------- */
+  var copyBtn = document.getElementById('copy-btn');
+  copyBtn.addEventListener('click', function(){
+    var email = 'pifavoreto@gmail.com';
+    var done = function(){
+      copyBtn.classList.add('copied');
+      setTimeout(function(){ copyBtn.classList.remove('copied'); }, 1800);
+    };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(email).then(done).catch(done);
+    }else{
+      var t = document.createElement('textarea');
+      t.value = email; document.body.appendChild(t); t.select();
+      try{ document.execCommand('copy'); }catch(e){}
+      document.body.removeChild(t); done();
+    }
+  });
+
+  /* ---------- CUSTOM CURSOR ---------- */
+  if(finePointer && !reduceMotion){
+    document.body.classList.add('cursor-on','pointer-fine');
+    var dot = document.querySelector('.cursor-dot');
+    var ring = document.querySelector('.cursor-ring');
+    var mx = window.innerWidth/2, my = window.innerHeight/2, rx = mx, ry = my;
+    window.addEventListener('mousemove', function(e){
+      mx = e.clientX; my = e.clientY;
+      dot.style.transform = 'translate(' + mx + 'px,' + my + 'px)';
+    });
+    (function loop(){
+      rx += (mx - rx) * 0.18; ry += (my - ry) * 0.18;
+      ring.style.transform = 'translate(' + rx + 'px,' + ry + 'px)';
+      requestAnimationFrame(loop);
+    })();
+    document.querySelectorAll('a, button, [data-cursor], .browser').forEach(function(el){
+      el.addEventListener('mouseenter', function(){ ring.classList.add('hover'); });
+      el.addEventListener('mouseleave', function(){ ring.classList.remove('hover'); });
+    });
+    document.addEventListener('mouseleave', function(){ dot.style.opacity = 0; ring.style.opacity = 0; });
+    document.addEventListener('mouseenter', function(){ dot.style.opacity = ''; ring.style.opacity = ''; });
+  }
+
+  /* ---------- MAGNETIC BUTTONS ---------- */
+  if(finePointer && !reduceMotion){
+    document.querySelectorAll('.btn-primary, .theme-toggle').forEach(function(btn){
+      btn.addEventListener('mousemove', function(e){
+        var r = btn.getBoundingClientRect();
+        var x = e.clientX - r.left - r.width/2;
+        var y = e.clientY - r.top - r.height/2;
+        btn.style.transform = 'translate(' + (x*0.25) + 'px,' + (y*0.35) + 'px)';
+      });
+      btn.addEventListener('mouseleave', function(){ btn.style.transform = ''; });
+    });
+  }
+})();
+</script>
+
 </body>
 </html>
