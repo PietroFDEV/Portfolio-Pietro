@@ -389,11 +389,32 @@ body.menu-open .menu-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-
 .cert-thumb span{position:absolute; left:0; right:0; bottom:0; font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; padding:9px 12px; color:#fff; background:linear-gradient(transparent, rgba(0,0,0,.78));}
 
 /* ============ WRITING / LINKEDIN ============ */
-.posts{display:grid; grid-template-columns:1fr; gap:20px; align-items:start;}
-@media (min-width:760px){ .posts{grid-template-columns:repeat(3,1fr);} }
-.post.embed{padding:0; overflow:hidden; background:var(--bg-tint); position:relative; min-height:200px;}
-.post.embed::after{content:"carregando post do LinkedIn…"; position:absolute; inset:0; display:grid; place-items:center; font-family:var(--mono); font-size:11px; letter-spacing:.04em; color:var(--muted); z-index:0; padding:20px; text-align:center;}
-.post.embed iframe{display:block; position:relative; z-index:1; width:100%; border:0;}
+.posts{
+  display:flex; gap:20px;
+  overflow-x:auto; overflow-y:hidden;
+  scroll-snap-type:x proximity;
+  padding:4px 4px 16px; margin:0 -4px;
+  scrollbar-width:thin; scrollbar-color:var(--line-strong) transparent;
+}
+.posts::-webkit-scrollbar{height:6px;}
+.posts::-webkit-scrollbar-track{background:transparent;}
+.posts::-webkit-scrollbar-thumb{background:var(--line-strong); border-radius:100px;}
+.post.embed{
+  flex:0 0 clamp(290px, 84vw, 440px);
+  scroll-snap-align:start;
+  height:560px; padding:0; overflow:hidden;
+  background:var(--bg-tint); position:relative;
+}
+.post.embed::after{
+  content:"carregando post do LinkedIn…";
+  position:absolute; inset:0; z-index:0;
+  display:grid; place-items:center; padding:20px; text-align:center;
+  font-family:var(--mono); font-size:11px; letter-spacing:.04em; color:var(--muted);
+}
+.post.embed iframe{position:absolute; inset:0; z-index:1; width:100%; height:100%; border:0;}
+.post.embed:hover{transform:none;}
+.posts-hint{margin-top:16px; font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); display:flex; align-items:center; gap:8px;}
+.posts-hint::before{content:""; width:20px; height:1px; background:currentColor; opacity:.5;}
 .post{
   background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
   padding:24px; display:flex; flex-direction:column; gap:16px; min-height:280px;
@@ -863,6 +884,7 @@ footer.site .to-top:hover{gap:12px; color:var(--ink);}
         <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7484618232822259712?collapsed=1" height="560" width="504" frameborder="0" allowfullscreen loading="lazy" title="Post de Pietro Favoreto no LinkedIn"></iframe>
       </article>
     </div>
+    <div class="posts-hint" data-reveal aria-hidden="true">arraste para o lado &#8596;</div>
 
     <div style="margin-top:34px;" data-reveal>
       <a href="https://www.linkedin.com/in/pietro-goudel-favoreto-255355208/" target="_blank" rel="noopener" class="btn btn-ghost" data-cursor><i class="fa-brands fa-linkedin"></i> Seguir no LinkedIn</a>
