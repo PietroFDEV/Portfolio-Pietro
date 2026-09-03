@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pietro Favoreto — Desenvolvedor & Sistemas sob medida</title>
-<meta name="description" content="Portfólio de Pietro Favoreto. Sites e sistemas de gestão sob medida para clientes reais: Colégio Saber, Karaoke Fila, CIA DF. Back-end, integrações e APIs em C#, PHP, Python e MySQL.">
+<meta name="description" content="Portfólio de Pietro Favoreto — analista de sistemas e desenvolvedor full stack. Sites e sistemas de gestão sob medida para clientes reais: Colégio Saber, Karaoke Fila, CIA DF. APIs REST em C#/.NET, microsserviços, Angular, Vue.js, PHP e SQL.">
 <meta name="author" content="Pietro Favoreto">
 
 <meta property="og:type" content="website">
@@ -72,7 +72,7 @@ body{
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
 }
-img{max-width:100%; display:block;}
+img{max-width:100%; height:auto; display:block;}
 a{color:inherit; text-decoration:none;}
 button{font:inherit; color:inherit; background:none; border:none; cursor:pointer;}
 ::selection{background:var(--accent); color:#fff;}
@@ -363,9 +363,9 @@ body.menu-open .menu-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-
 /* ============ ABOUT ============ */
 .about-grid{display:grid; grid-template-columns:1fr; gap:44px;}
 @media (min-width:900px){ .about-grid{grid-template-columns:.85fr 1.15fr; gap:70px; align-items:start;} }
-.about-portrait{position:relative;}
-.about-portrait img{border-radius:var(--radius); border:1px solid var(--line); background:var(--bg-tint);}
-.about-portrait .tagchip{position:absolute; bottom:-14px; left:-14px; background:var(--surface); border:1px solid var(--line-strong); border-radius:100px; padding:9px 16px; font-family:var(--mono); font-size:11.5px; color:var(--ink-soft); box-shadow:var(--shadow-sm);}
+.about-portrait{position:relative; width:100%; max-width:340px;}
+.about-portrait img{width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:50%; border:1px solid var(--line); background:var(--bg-tint);}
+.about-portrait .tagchip{position:absolute; bottom:6px; left:-14px; background:var(--surface); border:1px solid var(--line-strong); border-radius:100px; padding:9px 16px; font-family:var(--mono); font-size:11.5px; color:var(--ink-soft); box-shadow:var(--shadow-sm);}
 .about-copy p{color:var(--ink-soft); font-size:16px; margin-bottom:18px;}
 .about-copy p em{font-family:var(--serif); font-style:italic; font-size:1.06em; color:var(--ink);}
 .stack{margin-top:30px;}
@@ -382,10 +382,18 @@ body.menu-open .menu-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-
 .tl-item ul{list-style:none; display:flex; flex-direction:column; gap:9px;}
 .tl-item li{position:relative; padding-left:20px; color:var(--ink-soft); font-size:14.5px;}
 .tl-item li::before{content:""; position:absolute; left:0; top:10px; width:6px; height:6px; border-radius:50%; background:var(--accent);}
+.tl-item .tl-loc{display:block; margin-top:5px; opacity:.7;}
+.cert-thumb{display:inline-block; position:relative; margin-top:20px; max-width:340px; border:1px solid var(--line-strong); border-radius:10px; overflow:hidden; box-shadow:var(--shadow-sm); transition:transform .4s var(--ease);}
+.cert-thumb:hover{transform:translateY(-3px);}
+.cert-thumb img{display:block; width:100%;}
+.cert-thumb span{position:absolute; left:0; right:0; bottom:0; font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; padding:9px 12px; color:#fff; background:linear-gradient(transparent, rgba(0,0,0,.78));}
 
 /* ============ WRITING / LINKEDIN ============ */
-.posts{display:grid; grid-template-columns:1fr; gap:20px;}
+.posts{display:grid; grid-template-columns:1fr; gap:20px; align-items:start;}
 @media (min-width:760px){ .posts{grid-template-columns:repeat(3,1fr);} }
+.post.embed{padding:0; overflow:hidden; background:var(--bg-tint); position:relative; min-height:200px;}
+.post.embed::after{content:"carregando post do LinkedIn…"; position:absolute; inset:0; display:grid; place-items:center; font-family:var(--mono); font-size:11px; letter-spacing:.04em; color:var(--muted); z-index:0; padding:20px; text-align:center;}
+.post.embed iframe{display:block; position:relative; z-index:1; width:100%; border:0;}
 .post{
   background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
   padding:24px; display:flex; flex-direction:column; gap:16px; min-height:280px;
@@ -486,7 +494,7 @@ footer.site .to-top:hover{gap:12px; color:var(--ink);}
   </div>
   <div class="wrap">
     <div class="status-badge" data-reveal>
-      <span class="live"></span> Disponível para novos projetos — 2026
+      <span class="live"></span> Aberto a projetos freelance — 2026
     </div>
     <h1 id="hero-title">
       <span class="line-mask"><span>Sites e sistemas</span></span>
@@ -494,7 +502,7 @@ footer.site .to-top:hover{gap:12px; color:var(--ink);}
       <span class="line-mask"><span><em>aguentam</em> produção.</span></span>
     </h1>
     <p class="lead" data-reveal style="--d:.2s">
-      Sou o Pietro. Há 2 anos e meio construo back-end, integrações de mensageria e APIs numa empresa de tecnologia — e, em paralelo, entrego sites e sistemas de gestão completos para clientes que precisam operar o próprio negócio sem depender de mim depois.
+      Sou o Pietro — analista de sistemas e desenvolvedor full stack. Passei quase 4 anos na Bellinati Perez construindo APIs REST em C#/.NET, microsserviços e telas em Angular e Vue; hoje sigo com análise e desenvolvimento de sistemas na BBM Logística. Em paralelo, entrego sites e sistemas de gestão completos para clientes que precisam operar o próprio negócio sem depender de mim depois.
     </p>
     <div class="hero-actions" data-reveal style="--d:.3s">
       <a href="#work" class="btn btn-primary" data-cursor><i class="fa-solid fa-arrow-down"></i> Ver trabalhos</a>
@@ -505,8 +513,8 @@ footer.site .to-top:hover{gap:12px; color:var(--ink);}
   <div class="wrap">
     <div class="marquee" aria-hidden="true">
       <div class="marquee-track">
-        <span>C#</span><span>PHP</span><span>Python</span><span>MySQL</span><span>API REST</span><span>JavaScript</span><span>Google Apps Script</span><span>Integrações SMS · E-mail · WhatsApp</span><span>Git</span>
-        <span>C#</span><span>PHP</span><span>Python</span><span>MySQL</span><span>API REST</span><span>JavaScript</span><span>Google Apps Script</span><span>Integrações SMS · E-mail · WhatsApp</span><span>Git</span>
+        <span>C#</span><span>.NET / .NET 8</span><span>API REST</span><span>Microsserviços</span><span>Clean Architecture</span><span>SOLID</span><span>Angular</span><span>TypeScript</span><span>Vue.js</span><span>Entity Framework</span><span>PostgreSQL</span><span>MySQL</span><span>Docker · Redis</span><span>PHP</span><span>Python</span><span>Git</span>
+        <span>C#</span><span>.NET / .NET 8</span><span>API REST</span><span>Microsserviços</span><span>Clean Architecture</span><span>SOLID</span><span>Angular</span><span>TypeScript</span><span>Vue.js</span><span>Entity Framework</span><span>PostgreSQL</span><span>MySQL</span><span>Docker · Redis</span><span>PHP</span><span>Python</span><span>Git</span>
       </div>
     </div>
   </div>
@@ -516,10 +524,10 @@ footer.site .to-top:hover{gap:12px; color:var(--ink);}
 <section style="padding:4px 0 0;">
   <div class="wrap">
     <div class="stats" data-reveal>
-      <div class="stat"><div class="num"><span data-count="2.5" data-dec="1">0</span><small>anos</small></div><div class="lbl">construindo em produção</div></div>
+      <div class="stat"><div class="num"><span data-count="4">0</span><small>+ anos</small></div><div class="lbl">de carreira em software</div></div>
       <div class="stat"><div class="num"><span data-count="3">0</span></div><div class="lbl">sites de clientes no ar</div></div>
       <div class="stat"><div class="num"><span data-count="8">0</span><small>+</small></div><div class="lbl">projetos entregues</div></div>
-      <div class="stat"><div class="num"><span data-count="4">0</span></div><div class="lbl">linguagens no dia a dia</div></div>
+      <div class="stat"><div class="num">B2</div><div class="lbl">inglês · ISE II (Trinity)</div></div>
     </div>
   </div>
 </section>
@@ -575,7 +583,7 @@ footer.site .to-top:hover{gap:12px; color:var(--ink);}
         <h3>Karaoke Fila</h3>
         <div class="cat">Produto próprio · Web app</div>
         <p>Produto para digitalizar a fila do karaokê: cada bar ganha o próprio site e um painel para organizar quem canta a seguir em tempo real, sem papel e sem confusão no microfone. Inclui página de contratação e área de login para os estabelecimentos.</p>
-        <div class="kv"><span>Full-stack</span><span>Tempo real</span><span>Multi-tenant</span><span>API REST</span></div>
+        <div class="kv"><span>PHP</span><span>MySQL</span><span>Tempo real</span><span>Multi-tenant</span></div>
         <div class="links">
           <a href="https://karaokefila.com" target="_blank" rel="noopener" data-cursor><i class="fa-solid fa-arrow-up-right-from-square"></i> Ver site</a>
         </div>
@@ -733,16 +741,16 @@ footer.site .to-top:hover{gap:12px; color:var(--ink);}
     </div>
     <div class="about-grid">
       <div class="about-portrait" data-reveal>
-        <img src="src/images/profile.png" alt="Pietro Favoreto" width="600" height="600" loading="lazy">
+        <img src="src/images/pietro.jpg" alt="Pietro Favoreto" width="760" height="760" loading="lazy">
         <span class="tagchip">Curitiba, BR · remoto</span>
       </div>
       <div class="about-copy" data-reveal style="--d:.1s">
-        <p>Nos últimos 2 anos e meio trabalhei na equipe de <em>Message Broker</em> de uma empresa de tecnologia, construindo os sistemas que enviam e recebem mensagens de clientes por SMS, e-mail e WhatsApp — do disparo ao callback de confirmação, passando pela sanitização de números e e-mails para reduzir falhas de entrega.</p>
-        <p>Fora do trabalho fixo, atendo clientes como freelancer: um sistema de gestão completo para uma companhia de dança, sites institucionais, um produto para filas de karaokê e um automatizador de atividades para o Google Classroom. Em todos, o cliente entrou com um problema real e saiu com um sistema que <em>ele mesmo</em> consegue operar.</p>
+        <p>Entrei no mercado em 2022 como estagiário construindo automações <em>RPA</em> e, em três anos na Bellinati Perez, virei desenvolvedor full stack e analista de sistemas: APIs REST em C#/.NET, microsserviços, Clean Architecture e SOLID no backend; Angular, TypeScript e Vue.js no frontend; Docker, Entity Framework, PostgreSQL e MySQL no meio do caminho. Hoje faço análise e desenvolvimento de sistemas na BBM Logística.</p>
+        <p>Em paralelo, atendo clientes como freelancer: sites institucionais e de captação, um produto web para filas de karaokê, um sistema de gestão completo para uma companhia de dança e automações para o Google Classroom. Em todos, o cliente entrou com um problema real e saiu com um sistema que <em>ele mesmo</em> consegue operar.</p>
         <div class="stack">
           <h4>Stack principal</h4>
           <div class="pills">
-            <span>C#</span><span>PHP</span><span>Python</span><span>MySQL</span><span>API REST</span><span>JavaScript</span><span>Google Apps Script</span><span>Git</span>
+            <span>C#</span><span>.NET / .NET 8</span><span>API REST</span><span>Microsserviços</span><span>Clean Architecture</span><span>SOLID</span><span>Entity Framework</span><span>Angular</span><span>TypeScript</span><span>Vue.js</span><span>Docker · Redis</span><span>PostgreSQL</span><span>MySQL</span><span>PHP</span><span>Python</span><span>Google Apps Script</span><span>Git</span>
           </div>
         </div>
       </div>
@@ -750,29 +758,73 @@ footer.site .to-top:hover{gap:12px; color:var(--ink);}
 
     <div style="margin-top:80px;">
       <div class="eyebrow" data-reveal style="margin-bottom:34px;">Experiência</div>
+
       <div class="tl-item" data-reveal>
-        <div class="tl-meta">Bellinati Perez<br>Mar 2022 — Presente</div>
+        <div class="tl-meta">BBM Logística<br>Abr 2026 — Presente<span class="tl-loc">São José dos Pinhais, PR · Híbrido</span></div>
         <div>
-          <h3>Analista e Desenvolvedor</h3>
+          <h3>Analista de Sistemas</h3>
           <ul>
-            <li>Equipe de Message Broker: sistemas de envio e recebimento de mensagens por SMS, e-mail e WhatsApp, com callbacks para processar respostas em tempo real.</li>
-            <li>Construção da lógica de sanitização de números e e-mails, aumentando a taxa de entrega e a confiabilidade dos dados.</li>
-            <li>Contribuição no Projeto Dialer, com automação de operações de chamadas.</li>
-            <li>Integração entre sistemas via APIs, em colaboração com times multidisciplinares.</li>
-            <li>Debugging, testes e manutenção de aplicações em produção.</li>
+            <li>Análise técnica de incidentes e falhas sistêmicas, identificando causa raiz e propondo soluções estruturais.</li>
+            <li>Análise operacional e suporte à lógica de negócio junto às áreas de logística.</li>
+            <li>Evolução de sistemas existentes com foco em estabilidade e prevenção de recorrência de erros.</li>
           </ul>
         </div>
       </div>
+
       <div class="tl-item" data-reveal>
-        <div class="tl-meta">Projetos freelance<br>Em paralelo</div>
+        <div class="tl-meta">Bellinati Perez<br>Mar 2022 — Jul 2025<span class="tl-loc">Curitiba, PR · Híbrido · retorno como consultor em Mar 2026</span></div>
+        <div>
+          <h3>Desenvolvedor Full Stack / Analista de Sistemas</h3>
+          <ul>
+            <li>APIs REST em C#, .NET Framework, .NET Core e .NET 8, com arquitetura MVC e princípios de Clean Architecture.</li>
+            <li>SOLID e Design Patterns (Strategy, Dependency Injection) e microsserviços de evolução independente.</li>
+            <li>Acesso a dados com Entity Framework e LINQ, queries otimizadas e integração com PostgreSQL e MySQL.</li>
+            <li>Containerização com Docker (APIs, bancos, Redis), padronizando ambientes de desenvolvimento e teste.</li>
+            <li>Interfaces frontend em Angular, TypeScript e Vue.js, integradas ao backend em C#.</li>
+            <li>Análise de incidentes, mensageria, monitoramento de anomalias com Pentaho e documentação de arquitetura.</li>
+            <li>Início como estagiário: automações RPA na plataforma IBM WDG, com tratamento de erros e logs para rastreabilidade.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item" data-reveal>
+        <div class="tl-meta">Freelance<br>2021 — Presente<span class="tl-loc">Remoto · Curitiba, PR</span></div>
         <div>
           <h3>Desenvolvedor Freelance</h3>
           <ul>
-            <li>Sistema de gestão financeira, de turmas e alunos para uma companhia de dança.</li>
-            <li>Sites institucionais e de captação (Colégio Saber, CIA DF) em HTML, CSS, JavaScript e PHP.</li>
-            <li>Karaoke Fila — produto web multi-tenant para gestão de filas de karaokê em tempo real.</li>
+            <li>Sites institucionais e de captação: Colégio Saber e CIA DF (HTML, CSS, JavaScript, PHP).</li>
+            <li>Karaoke Fila — produto web multi-tenant em PHP e MySQL para filas de karaokê em tempo real.</li>
+            <li>Sistema de gestão financeira, de turmas e alunos para uma companhia de dança (C#, MySQL).</li>
             <li>Automação de acompanhamento de atividades no Google Classroom via Google Apps Script.</li>
           </ul>
+        </div>
+      </div>
+
+      <div class="eyebrow" data-reveal style="margin:64px 0 34px;">Formação &amp; certificações</div>
+
+      <div class="tl-item" data-reveal>
+        <div class="tl-meta">UniBrasil Centro Universitário<br>2021 — 2024</div>
+        <div>
+          <h3>Bacharelado em Engenharia de Software</h3>
+          <ul>
+            <li>Prática Profissional a cada semestre: projetos em grupo com CRUD, MVC e integração com banco de dados.</li>
+            <li>Base sólida em C#, TypeScript, Angular, React e desenvolvimento mobile.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item" data-reveal>
+        <div class="tl-meta">Trinity College London<br>Nov 2025<span class="tl-loc">Credencial 17320005</span></div>
+        <div>
+          <h3>ISE II — Inglês CEFR nível B2</h3>
+          <ul>
+            <li>Integrated Skills in English (ISE II) — Level 1 Certificate in ESOL International, avaliado presencialmente nas quatro habilidades.</li>
+            <li>Speaking B2 (Distinction) · Reading B2 (Merit) · Listening e Writing B2 (Pass).</li>
+          </ul>
+          <a class="cert-thumb" href="src/images/certificates/ise-ii-b2.jpg" target="_blank" rel="noopener" data-cursor>
+            <img src="src/images/certificates/ise-ii-b2.jpg" alt="Certificado ISE II — CEFR B2 — Pietro Favoreto (Trinity College London)" loading="lazy" onerror="var c=this.closest('.cert-thumb'); if(c) c.style.display='none';">
+            <span>ver certificado</span>
+          </a>
         </div>
       </div>
     </div>
@@ -792,40 +844,23 @@ footer.site .to-top:hover{gap:12px; color:var(--ink);}
 
     <!--
       ========================================================================
-      COMO COLOCAR SEUS POSTS REAIS DO LINKEDIN:
-      1. Abra o post no LinkedIn → botão "..." → "Incorporar este post".
-      2. Copie o <iframe> gerado.
-      3. Substitua um bloco <div class="post placeholder"> ... </div> abaixo
-         pelo iframe, envolto em <div class="post" style="padding:0;overflow:hidden">.
-      Enquanto não tiver os embeds, os cards abaixo servem de rascunho visual.
+      POSTS DO LINKEDIN (embeds oficiais).
+      Para trocar/adicionar: abra o post no LinkedIn → "..." → "Incorporar este
+      post", copie o <iframe> e substitua um dos <iframe> abaixo. Mantenha cada
+      um dentro de <article class="post embed" data-reveal>. Ajuste height se
+      o post for muito alto (o embed rola sozinho por dentro).
       ========================================================================
     -->
 
     <div class="posts">
-      <article class="post" data-reveal>
-        <div class="p-head">
-          <div class="av"><i class="fa-brands fa-linkedin-in"></i></div>
-          <div><div class="who">Pietro Favoreto</div><div class="when">rascunho · exemplo</div></div>
-        </div>
-        <div class="p-body">“Como a sanitização de números e e-mails antes do disparo derrubou nossa taxa de falha de entrega — e por que quase ninguém trata isso como parte do produto.”</div>
-        <div class="p-foot"><span><i class="fa-regular fa-heart"></i> —</span><span><i class="fa-regular fa-comment"></i> —</span><a class="ln" href="https://www.linkedin.com/in/pietro-goudel-favoreto-255355208/" target="_blank" rel="noopener" data-cursor>Ver no LinkedIn</a></div>
+      <article class="post embed" data-reveal>
+        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7484620417283051520?collapsed=1" height="560" width="504" frameborder="0" allowfullscreen loading="lazy" title="Post de Pietro Favoreto no LinkedIn"></iframe>
       </article>
-
-      <article class="post" data-reveal style="--d:.06s">
-        <div class="p-head">
-          <div class="av"><i class="fa-brands fa-linkedin-in"></i></div>
-          <div><div class="who">Pietro Favoreto</div><div class="when">rascunho · exemplo</div></div>
-        </div>
-        <div class="p-body">“Entreguei um sistema de gestão para uma escola de dança. O melhor feedback não foi técnico: ‘consigo fechar o mês sozinha agora.’”</div>
-        <div class="p-foot"><span><i class="fa-regular fa-heart"></i> —</span><span><i class="fa-regular fa-comment"></i> —</span><a class="ln" href="https://www.linkedin.com/in/pietro-goudel-favoreto-255355208/" target="_blank" rel="noopener" data-cursor>Ver no LinkedIn</a></div>
+      <article class="post embed" data-reveal style="--d:.06s">
+        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7484623718841905152?collapsed=1" height="560" width="504" frameborder="0" allowfullscreen loading="lazy" title="Post de Pietro Favoreto no LinkedIn"></iframe>
       </article>
-
-      <article class="post placeholder" data-reveal style="--d:.12s">
-        <div class="p-head">
-          <div class="av"><i class="fa-solid fa-plus"></i></div>
-          <div><div class="who">Seu próximo post</div><div class="when">embed do LinkedIn</div></div>
-        </div>
-        <div class="ph-note">Cole aqui o <code>&lt;iframe&gt;</code> de “Incorporar este post” do LinkedIn. Instruções no comentário do HTML desta seção.</div>
+      <article class="post embed" data-reveal style="--d:.12s">
+        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7484618232822259712?collapsed=1" height="560" width="504" frameborder="0" allowfullscreen loading="lazy" title="Post de Pietro Favoreto no LinkedIn"></iframe>
       </article>
     </div>
 

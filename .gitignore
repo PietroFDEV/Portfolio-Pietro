@@ -1,0 +1,7 @@
+# Imagens de origem / alta resolução — não versionar (o site usa as versões otimizadas)
+src/images/CertificadoB2.jpg
+src/images/PietroX.jpeg
+
+# temporários
+*.tmp
+_lighttest.html
